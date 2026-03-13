@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Princess F. Sagario | IT Portfolio</title>
+<style>
+/* ===== RESET & VARIABLES ===== */
+* {
+  margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth;
+}
+:root {
+  --primary: #38bdf8; --primary-dark: #0ea5e9; --dark: #0f172a; --darker: #020617; --light: #1e293b;
+  --lighter: #334155; --white: #ffffff; --gray: #94a3b8; --transition: all 0.3s ease; --shadow: 0 10px 30px rgba(0,0,0,0.3);
+  --shadow-hover: 0 20px 40px rgba(56,189,248,0.3);
+}
+body {background:var(--dark); color:var(--white); line-height:1.6; overflow-x:hidden;}
+h1,h2,h3,h4 {font-weight:600; letter-spacing:-0.02em;}
+h1{font-size:2.5rem;} h2{font-size:2.2rem;} h3{font-size:1.5rem;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 10%;background:rgba(2,6,23,0.95);backdrop-filter:blur(10px);position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.2);border-bottom:1px solid rgba(56,189,248,0.2);}
+.logo{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,var(--primary),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+nav ul{display:flex;list-style:none;gap:2.5rem;}
+nav a{text-decoration:none;color:var(--white);font-weight:500;font-size:1rem;transition:var(--transition);position:relative;padding:0.5rem 0;}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--primary);transition:var(--transition);}
+nav a:hover{color:var(--primary);}
+nav a:hover::after{width:100%;}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 50%, rgba(56,189,248,0.1) 0%, transparent 50%);pointer-events:none;}
+.profile-pic{width:220px;height:220px;border-radius:50%;object-fit:cover;margin-bottom:2rem;border:4px solid var(--primary);box-shadow:0 0 40px rgba(56,189,248,0.5);animation:float 3s ease-in-out infinite;transition:var(--transition);}
+.profile-pic:hover{transform:scale(1.05);box-shadow:0 0 60px rgba(56,189,248,0.8);border-color:var(--white);}
+.hero h2{font-size:3.5rem;margin-bottom:1rem;animation:slideUp 1s ease;}
+.hero h2 span{background:linear-gradient(135deg,var(--primary),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{max-width:600px;opacity:0.9;font-size:1.2rem;margin-bottom:2rem;animation:slideUp 1s ease 0.2s backwards;color:var(--gray);}
+.btn-group{display:flex;gap:1rem;justify-content:center;animation:slideUp 1s ease 0.4s backwards;}
+.btn{padding:0.8rem 2rem;border-radius:50px;font-weight:600;text-decoration:none;transition:var(--transition);border:2px solid transparent;}
+.btn-primary{background:var(--primary);color:var(--darker);}
+.btn-primary:hover{background:transparent;border-color:var(--primary);color:var(--primary);transform:translateY(-3px);box-shadow:0 10px 20px rgba(56,189,248,0.3);}
+.btn-outline{border:2px solid var(--primary);color:var(--primary);}
+.btn-outline:hover{background:var(--primary);color:var(--darker);transform:translateY(-3px);box-shadow:0 10px 20px rgba(56,189,248,0.3);}
+section{padding:6rem 10%;position:relative;}
+section:nth-child(even){background:linear-gradient(135deg,var(--darker),var(--dark));}
+.title{text-align:center;margin-bottom:4rem;font-size:2.8rem;background:linear-gradient(135deg,var(--white),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;}
+.title::after{content:'';position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);width:80px;height:4px;background:linear-gradient(90deg,transparent,var(--primary),transparent);border-radius:2px;}
+.about{max-width:800px;margin:0 auto;text-align:center;font-size:1.1rem;color:var(--gray);line-height:1.9;background:rgba(30,41,59,0.5);padding:3rem;border-radius:20px;backdrop-filter:blur(10px);border:1px solid rgba(56,189,248,0.1);box-shadow:var(--shadow);transition:var(--transition);}
+.about:hover{transform:translateY(-10px);box-shadow:var(--shadow-hover);border-color:rgba(56,189,248,0.3);}
+.skills-container{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;max-width:800px;margin:0 auto;}
+.skill{background:linear-gradient(135deg,var(--light),var(--lighter));padding:1rem 2.5rem;border-radius:50px;font-weight:600;font-size:1.1rem;transition:var(--transition);border:1px solid transparent;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.skill::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left 0.5s ease;}
+.skill:hover{transform:translateY(-8px) scale(1.05);background:var(--primary);color:var(--darker);border-color:var(--white);box-shadow:var(--shadow-hover);}
+.skill:hover::before{left:100%;}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2.5rem;margin-top:2rem;}
+.project-card{background:linear-gradient(135deg,var(--light),var(--lighter));padding:2.5rem;border-radius:20px;transition:var(--transition);box-shadow:var(--shadow);border:1px solid transparent;position:relative;overflow:hidden;}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),#818cf8);transform:scaleX(0);transition:transform 0.5s ease;}
+.project-card:hover{transform:translateY(-15px) scale(1.02);background:linear-gradient(135deg,var(--primary),#818cf8);color:var(--darker);border-color:var(--white);box-shadow:var(--shadow-hover);}
+.project-card:hover::before{transform:scaleX(1);}
+.project-card h3{margin-bottom:1rem;font-size:1.6rem;transition:var(--transition);}
+.project-card p{opacity:0.9;font-size:1rem;line-height:1.7;transition:var(--transition);}
+.project-card:hover h3,.project-card:hover p{color:var(--darker);}
+.contact{display:flex;justify-content:center;flex-wrap:wrap;gap:2rem;margin-top:2rem;}
+.contact a{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;color:var(--white);text-decoration:none;background:linear-gradient(135deg,var(--primary),#818cf8);padding:1rem 2.5rem;border-radius:50px;font-weight:600;font-size:1.1rem;transition:var(--transition);box-shadow:var(--shadow);border:2px solid transparent;position:relative;overflow:hidden;}
+.contact a::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,0.3);transform:translate(-50%,-50%);transition:width 0.6s ease,height 0.6s ease;}
+.contact a:hover{background:transparent;border-color:var(--primary);color:var(--primary);transform:translateY(-5px);box-shadow:var(--shadow-hover);}
+.contact a:hover::before{width:300px;height:300px;}
+footer{text-align:center;padding:2.5rem;background:var(--darker);color:var(--gray);font-size:0.95rem;border-top:1px solid rgba(56,189,248,0.1);}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
+@keyframes slideUp{from{opacity:0;transform:translateY(50px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:1024px){section{padding:4rem 5%;}h1{font-size:2.2rem;}h2{font-size:2rem;}.hero h2{font-size:2.8rem;}}
+@media(max-width:768px){nav{flex-direction:column;gap:1rem;padding:1rem 5%;}nav ul{gap:1.5rem;}.hero h2{font-size:2.2rem;}.profile-pic{width:180px;height:180px;}.title{font-size:2.2rem;}.about{padding:2rem;}.contact a{width:100%;}.btn-group{flex-direction:column;}}
+@media(max-width:480px){.hero h2{font-size:1.8rem;}.hero p{font-size:1rem;}.skill{padding:0.8rem 1.5rem;font-size:0.9rem;}.project-card{padding:1.5rem;}.project-card h3{font-size:1.3rem;}}
+::-webkit-scrollbar{width:10px;}::-webkit-scrollbar-track{background:var(--darker);}::-webkit-scrollbar-thumb{background:linear-gradient(135deg,var(--primary),#818cf8);border-radius:5px;}::-webkit-scrollbar-thumb:hover{background:var(--primary);}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<div class="logo">Princess Sagario</div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+<img src="https://i.postimg.cc/XvsmY3wW/e294c8d9-537e-47a4-942d-cc40fbc85255-1.jpg" class="profile-pic" alt="Princess Sagario">
+<h2>Hello, I'm <span>Princess F. Sagario</span></h2>
+<p>IT Graduate | Hardware Specialist | Tech Support Professional</p>
+<div class="btn-group">
+<a href="#contact" class="btn btn-primary">Hire Me</a>
+<a href="#projects" class="btn btn-outline">View Work</a>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2 class="title">About Me</h2>
+<div class="about">
+<p>I am an IT graduate with a strong background in computer hardware troubleshooting and technical support. My excellent communication skills allow me to assist users effectively and explain complex technical issues in simple terms. I am highly motivated, eager to learn, and excited to bring my expertise to new environments while growing my career in the IT field.</p>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2 class="title">Technical Skills</h2>
+<div class="skills-container">
+<div class="skill">HTML5</div>
+<div class="skill">CSS3</div>
+<div class="skill">Computer Hardware</div>
+<div class="skill">Troubleshooting</div>
+<div class="skill">Networking</div>
+<div class="skill">IT Support</div>
+<div class="skill">Windows OS</div>
+<div class="skill">Customer Service</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<h2 class="title">Featured Projects</h2>
+<div class="projects">
+<div class="project-card">
+<h3>Portfolio Website</h3>
+<p>A responsive personal portfolio website built with modern HTML5 and CSS3, featuring smooth animations and a clean, professional design.</p>
+</div>
+<div class="project-card">
+<h3>TAPSAKAY</h3>
+<p>IoT Integrated web based fare.</p>
+</div>
+<div class="project-card">
+<h3>Website Notes</h3>
+<p>A website notes reminder and can see finished tasks.</p>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2 class="title">Let's Connect</h2>
+<div class="contact">
+<a href="mailto:princesssagario6@gmail.com">✉️ Email Me</a>
+<a href="https://ph.linkedin.com/in/princess-sagario-8574043b0" target="_blank">🔗 LinkedIn</a>
+<a href="https://github.com/cessy-cell" target="_blank">💻 GitHub</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Princess F. Sagario. Crafted with passion for technology.</p>
+</footer>
+
+<!-- SCROLL ANIMATION -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const fadeElements = document.querySelectorAll('.about, .skill, .project-card, .contact a');
+const fadeInOnScroll = function() {
+fadeElements.forEach(el => {
+const top = el.getBoundingClientRect().top;
+const bottom = el.getBoundingClientRect().bottom;
+const height = window.innerHeight;
+if(top < height - 100 && bottom > 0){el.style.opacity='1'; el.style.transform='translateY(0)';}
+else{el.style.opacity='0'; el.style.transform='translateY(30px)';}
+});
+};
+fadeElements.forEach(el => {el.style.transition='opacity 0.8s ease, transform 0.8s ease'; el.style.opacity='0'; el.style.transform='translateY(30px)';});
+fadeInOnScroll();
+window.addEventListener('scroll', fadeInOnScroll);
+});
+</script>
+
+</body>
+</html>
